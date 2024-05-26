@@ -1,30 +1,31 @@
 package org.example;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 public class ControllerView {
-    private JFrame frame;
     private PanelGauche panelGauche;
     private PanelDroit panelDroit;
-    private Commande commande;
+    private List<IPlat> plats;
+    private List<IPlat> accompagnements;
+    private List<IPlat> desserts;
 
     public ControllerView(List<IPlat> plats, List<IPlat> accompagnements, List<IPlat> desserts) {
-        frame = new JFrame("Gestion des Commandes de Restaurant");
-        frame.setSize(800, 600);
+        this.plats = plats;
+        this.accompagnements = accompagnements;
+        this.desserts = desserts;
+
+        JFrame frame = new JFrame("Menu Commande");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+        frame.setSize(800, 600);
 
         panelGauche = new PanelGauche(plats, accompagnements, desserts);
         panelDroit = new PanelDroit();
 
-        frame.add(panelGauche, BorderLayout.WEST);
-        frame.add(panelDroit, BorderLayout.CENTER);
-
-        commande = new Commande();
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelGauche, panelDroit);
+        frame.add(splitPane);
 
         addListeners();
 
@@ -33,8 +34,6 @@ public class ControllerView {
 
     private void addListeners() {
         JButton addButton = panelGauche.getAddButton();
-        JButton validateButton = panelGauche.getValidateButton();
-
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,6 +41,7 @@ public class ControllerView {
             }
         });
 
+        JButton validateButton = panelGauche.getValidateButton();
         validateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,42 +56,30 @@ public class ControllerView {
         String accompagnement = panelGauche.getSelectedAccompagnement();
         String dessert = panelGauche.getSelectedDessert();
 
-        IPlat selectedPlat = new Plat(plat, 0, "");
-        IPlat selectedAccompagnement = new Plat(accompagnement, 0, "");
-        IPlat selectedDessert = new Plat(dessert, 0, "");
+        IPlat selectedPlat = plats.stream().filter(p -> p.getNom().equals(plat)).findFirst().orElse(null);
+        IPlat selectedAccompagnement = accompagnements.stream().filter(a -> a.getNom().equals(accompagnement)).findFirst().orElse(null);
+        IPlat selectedDessert = desserts.stream().filter(d -> d.getNom().equals(dessert)).findFirst().orElse(null);
 
-        if (selectedPlat != null) {
-            commande.ajouterPlat(selectedPlat);
-        }
-        if (selectedAccompagnement != null) {
-            commande.ajouterAccompagnement(selectedAccompagnement);
-        }
-        if (selectedDessert != null) {
-            commande.ajouterDessert(selectedDessert);
-        }
+        double prixPlat = selectedPlat != null ? selectedPlat.getPrix() : 0;
+        double prixAccompagnement = selectedAccompagnement != null ? selectedAccompagnement.getPrix() : 0;
+        double prixDessert = selectedDessert != null ? selectedDessert.getPrix() : 0;
+        double prixTotal = prixPlat + prixAccompagnement + prixDessert;
 
-        System.out.println("Menu ajouté pour " + table + ": Plat - " + plat + ", Accompagnement - " + accompagnement + ", Dessert - " + dessert);
+        panelDroit.appendText("Table : " + table);
+        panelDroit.appendText("Plat : " + plat + " - " + prixPlat + "€");
+        panelDroit.appendText("Accompagnement : " + accompagnement + " - " + prixAccompagnement + "€");
+        panelDroit.appendText("Dessert : " + dessert + " - " + prixDessert + "€");
+        panelDroit.appendText("Prix total : " + prixTotal + "€");
+
+        panelDroit.setPrixPlat(prixPlat);
+        panelDroit.setPrixAccompagnement(prixAccompagnement);
+        panelDroit.setPrixDessert(prixDessert);
+        panelDroit.setPrixTotal(prixTotal);
     }
 
     private void validerCommande() {
-        StringBuilder details = new StringBuilder();
-        details.append("Commande validée:\n");
-        details.append("Plats:\n");
-        for (IPlat plat : commande.getPlats()) {
-            details.append(" - ").append(plat.getNom()).append("\n");
-        }
-
-        details.append("Accompagnements:\n");
-        for (IPlat accompagnement : commande.getAccompagnements()) {
-            details.append(" - ").append(accompagnement.getNom()).append("\n");
-        }
-
-        details.append("Desserts:\n");
-        for (IPlat dessert : commande.getDesserts()) {
-            details.append(" - ").append(dessert.getNom()).append("\n");
-        }
-
-        panelDroit.afficherDetails(details.toString());
+        // Logique pour valider la commande
+        panelDroit.appendText("Commande validée!");
     }
 
     public static void main(String[] args) {
