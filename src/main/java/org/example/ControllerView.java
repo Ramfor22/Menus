@@ -48,6 +48,14 @@ public class ControllerView {
                 validerCommande();
             }
         });
+
+        JButton clearButton = panelGauche.getClearButton();
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                effacerCommande();
+            }
+        });
     }
 
     private void ajouterMenu() {
@@ -77,6 +85,11 @@ public class ControllerView {
         panelDroit.appendText("Commande validée!");
     }
 
+    private void effacerCommande() {
+        // Effacer le contenu du panel droit
+        panelDroit.clearText();
+    }
+
     public static void main(String[] args) {
         List<IPlat> plats = MenuLoader.loadPlats("src/main/resources/menu.xml");
         List<IPlat> accompagnements = MenuLoader.loadAccompagnements("src/main/resources/menu.xml");
@@ -85,4 +98,5 @@ public class ControllerView {
         new ControllerView(plats, accompagnements, desserts);
     }
 }
+
 

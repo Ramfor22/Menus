@@ -17,6 +17,7 @@ public class PanelGauche extends JPanel {
     private ButtonGroup dessertGroup;
     private JButton addButton;
     private JButton validateButton;
+    private JButton clearButton;
     private List<IPlat> plats;
     private List<IPlat> accompagnements;
     private List<IPlat> desserts;
@@ -190,10 +191,12 @@ public class PanelGauche extends JPanel {
         });
 
         JPanel controlPanel = new JPanel();
-        addButton = new JButton("Ajouter");
+        addButton = new JButton("Ajouter Menu");
         validateButton = new JButton("Valider");
+        clearButton = new JButton("Effacer");
         controlPanel.add(addButton);
         controlPanel.add(validateButton);
+        controlPanel.add(clearButton);
 
         add(mainPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
@@ -229,6 +232,10 @@ public class PanelGauche extends JPanel {
 
     public JButton getValidateButton() {
         return validateButton;
+    }
+
+    public JButton getClearButton() {
+        return clearButton;
     }
 
     public String getSelectedPlat() {

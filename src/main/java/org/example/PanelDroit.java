@@ -21,5 +21,10 @@ public class PanelDroit extends JPanel {
     public void appendText(String text) {
         commandeTextArea.append(text + "\n");
     }
+
+    public void clearText() {
+        commandeTextArea.setText("");
+    }
 }
+
 
