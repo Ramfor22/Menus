@@ -9,6 +9,7 @@ import java.util.List;
 public class ControllerView {
     private JFrame frame;
     private PanelGauche panelGauche;
+    private PanelDroit panelDroit;
     private Commande commande;
 
     public ControllerView(List<IPlat> plats, List<IPlat> accompagnements, List<IPlat> desserts) {
@@ -18,10 +19,10 @@ public class ControllerView {
         frame.setLayout(new BorderLayout());
 
         panelGauche = new PanelGauche(plats, accompagnements, desserts);
-        PanelDroit panelDroit = new PanelDroit();
+        panelDroit = new PanelDroit();
 
         frame.add(panelGauche, BorderLayout.WEST);
-        frame.add(panelDroit, BorderLayout.EAST);
+        frame.add(panelDroit, BorderLayout.CENTER);
 
         commande = new Commande();
 
@@ -55,20 +56,42 @@ public class ControllerView {
         String accompagnement = panelGauche.getSelectedAccompagnement();
         String dessert = panelGauche.getSelectedDessert();
 
-        IPlat selectedPlat = new Plat(plat, 0, ""); // Assurez-vous d'utiliser le constructeur approprié
-        IPlat selectedAccompagnement = new Plat(accompagnement, 0, ""); // Assurez-vous d'utiliser le constructeur approprié
-        IPlat selectedDessert = new Plat(dessert, 0, ""); // Assurez-vous d'utiliser le constructeur approprié
+        IPlat selectedPlat = new Plat(plat, 0, "");
+        IPlat selectedAccompagnement = new Plat(accompagnement, 0, "");
+        IPlat selectedDessert = new Plat(dessert, 0, "");
 
-        commande.ajouterPlat(selectedPlat);
-        commande.ajouterAccompagnement(selectedAccompagnement);
-        commande.ajouterDessert(selectedDessert);
+        if (selectedPlat != null) {
+            commande.ajouterPlat(selectedPlat);
+        }
+        if (selectedAccompagnement != null) {
+            commande.ajouterAccompagnement(selectedAccompagnement);
+        }
+        if (selectedDessert != null) {
+            commande.ajouterDessert(selectedDessert);
+        }
 
         System.out.println("Menu ajouté pour " + table + ": Plat - " + plat + ", Accompagnement - " + accompagnement + ", Dessert - " + dessert);
     }
 
     private void validerCommande() {
-        System.out.println("Commande validée:");
-        commande.afficherDetails();
+        StringBuilder details = new StringBuilder();
+        details.append("Commande validée:\n");
+        details.append("Plats:\n");
+        for (IPlat plat : commande.getPlats()) {
+            details.append(" - ").append(plat.getNom()).append("\n");
+        }
+
+        details.append("Accompagnements:\n");
+        for (IPlat accompagnement : commande.getAccompagnements()) {
+            details.append(" - ").append(accompagnement.getNom()).append("\n");
+        }
+
+        details.append("Desserts:\n");
+        for (IPlat dessert : commande.getDesserts()) {
+            details.append(" - ").append(dessert.getNom()).append("\n");
+        }
+
+        panelDroit.afficherDetails(details.toString());
     }
 
     public static void main(String[] args) {
