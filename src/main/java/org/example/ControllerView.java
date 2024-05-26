@@ -70,11 +70,6 @@ public class ControllerView {
         panelDroit.appendText("Accompagnement : " + accompagnement + " - " + prixAccompagnement + "€");
         panelDroit.appendText("Dessert : " + dessert + " - " + prixDessert + "€");
         panelDroit.appendText("Prix total : " + prixTotal + "€");
-
-        panelDroit.setPrixPlat(prixPlat);
-        panelDroit.setPrixAccompagnement(prixAccompagnement);
-        panelDroit.setPrixDessert(prixDessert);
-        panelDroit.setPrixTotal(prixTotal);
     }
 
     private void validerCommande() {
@@ -90,3 +85,4 @@ public class ControllerView {
         new ControllerView(plats, accompagnements, desserts);
     }
 }
+
