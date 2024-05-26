@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menu>
+    <Plats>
+        <Plat type="Viande" prix="22.0">Boeuf </Plat>
+        <Plat type="Poisson" prix="18.0">Saumon</Plat>
+        <Plat type="Volaille" prix="15.0">Poulet</Plat>
+        <!-- Plus de plats ici -->
+    </Plats>
+    <Accompagnements>
+        <Accompagnement prix="2.5">Frites</Accompagnement>
+        <Accompagnement prix="2.5">Pates</Accompagnement>
+        <Accompagnement prix="2.5">PommesDeTerre</Accompagnement>
+        <Accompagnement prix="2.5">Riz</Accompagnement>
+        <!-- Plus d'accompagnements ici -->
+    </Accompagnements>
+    <Desserts>
+        <Dessert prix="4.5">Cafegourmand</Dessert>
+        <Dessert prix="3.0">Fruit</Dessert>
+        <Dessert prix="3.0">Glace</Dessert>
+        <Dessert prix="5.0">Patisserie</Dessert>
+        <!-- Plus de desserts ici -->
+    </Desserts>
+</Menu>
