@@ -11,11 +11,13 @@ public class ControllerView {
     private List<IPlat> plats;
     private List<IPlat> accompagnements;
     private List<IPlat> desserts;
+    private DatabaseManager dbManager;
 
     public ControllerView(List<IPlat> plats, List<IPlat> accompagnements, List<IPlat> desserts) {
         this.plats = plats;
         this.accompagnements = accompagnements;
         this.desserts = desserts;
+        this.dbManager = new DatabaseManager();
 
         JFrame frame = new JFrame("Menu Commande");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,6 +80,9 @@ public class ControllerView {
         panelDroit.appendText("Accompagnement : " + accompagnement + " - " + prixAccompagnement + "€");
         panelDroit.appendText("Dessert : " + dessert + " - " + prixDessert + "€");
         panelDroit.appendText("Prix total : " + prixTotal + "€");
+
+        // Insérer la commande dans la base de données
+        dbManager.insertCommande(table, plat, accompagnement, dessert, prixTotal);
     }
 
     private void validerCommande() {
@@ -98,5 +103,6 @@ public class ControllerView {
         new ControllerView(plats, accompagnements, desserts);
     }
 }
+
 
 
