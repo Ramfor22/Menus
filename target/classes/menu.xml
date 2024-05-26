@@ -30,46 +30,96 @@
     </plats>
     <accompagnements>
         <accompagnement>
-            <nom>Frites</nom>
+            <nom>Frites classiques</nom>
             <prix>5.0</prix>
             <type>Frites</type>
         </accompagnement>
         <accompagnement>
-            <nom>Pâtes</nom>
+            <nom>Frites de patate douce</nom>
             <prix>6.0</prix>
+            <type>Frites</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Pâtes à la bolognaise</nom>
+            <prix>7.0</prix>
             <type>Pâtes</type>
         </accompagnement>
         <accompagnement>
-            <nom>Pomme de terre</nom>
-            <prix>5.0</prix>
+            <nom>Pâtes carbonara</nom>
+            <prix>8.0</prix>
+            <type>Pâtes</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Pomme de terre au four</nom>
+            <prix>6.0</prix>
             <type>Pomme de terre</type>
         </accompagnement>
         <accompagnement>
-            <nom>Riz</nom>
+            <nom>Pomme de terre sautées</nom>
+            <prix>5.5</prix>
+            <type>Pomme de terre</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Riz basmati</nom>
             <prix>4.0</prix>
+            <type>Riz</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Riz sauvage</nom>
+            <prix>5.0</prix>
             <type>Riz</type>
         </accompagnement>
         <!-- Ajoutez plus d'accompagnements ici -->
     </accompagnements>
     <desserts>
         <dessert>
-            <nom>Fruits</nom>
+            <nom>Fruits de saison</nom>
             <prix>4.0</prix>
             <type>Fruits</type>
         </dessert>
         <dessert>
-            <nom>Glaces</nom>
+            <nom>Salade de fruits</nom>
+            <prix>5.0</prix>
+            <type>Fruits</type>
+        </dessert>
+        <dessert>
+            <nom>Glaces vanille</nom>
             <prix>5.0</prix>
             <type>Glaces</type>
         </dessert>
         <dessert>
-            <nom>Patisserie</nom>
-            <prix>6.0</prix>
-            <type>Patisserie</type>
+            <nom>Glaces chocolat</nom>
+            <prix>5.0</prix>
+            <type>Glaces</type>
         </dessert>
         <dessert>
-            <nom>Café Gourmand</nom>
+            <nom>Pâtisserie aux fruits</nom>
+            <prix>6.0</prix>
+            <type>Pâtisserie</type>
+        </dessert>
+        <dessert>
+            <nom>Pâtisserie au chocolat</nom>
+            <prix>6.0</prix>
+            <type>Pâtisserie</type>
+        </dessert>
+        <dessert>
+            <nom>Tarte aux pommes</nom>
+            <prix>6.5</prix>
+            <type>Pâtisserie</type>
+        </dessert>
+        <dessert>
+            <nom>Éclair au chocolat</nom>
+            <prix>5.5</prix>
+            <type>Pâtisserie</type>
+        </dessert>
+        <dessert>
+            <nom>Café gourmand classique</nom>
             <prix>7.0</prix>
+            <type>Café Gourmand</type>
+        </dessert>
+        <dessert>
+            <nom>Café gourmand deluxe</nom>
+            <prix>8.0</prix>
             <type>Café Gourmand</type>
         </dessert>
         <!-- Ajoutez plus de desserts ici -->

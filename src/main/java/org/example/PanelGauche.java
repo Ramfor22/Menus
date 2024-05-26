@@ -142,7 +142,7 @@ public class PanelGauche extends JPanel {
         JPanel dessertButtonPanel = new JPanel(new FlowLayout());
         JRadioButton fruitsButton = new JRadioButton("Fruits");
         JRadioButton glacesButton = new JRadioButton("Glaces");
-        JRadioButton patisserieButton = new JRadioButton("Patisserie");
+        JRadioButton patisserieButton = new JRadioButton("Pâtisserie");
         JRadioButton cafeGourmandButton = new JRadioButton("Café Gourmand");
 
         dessertGroup = new ButtonGroup();
@@ -178,7 +178,7 @@ public class PanelGauche extends JPanel {
         patisserieButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateDessertComboBox("Patisserie");
+                updateDessertComboBox("Pâtisserie");
             }
         });
 
