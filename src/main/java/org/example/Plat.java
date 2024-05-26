@@ -1,6 +1,7 @@
 package org.example;
 
 public class Plat implements IPlat {
+
     private String nom;
     private double prix;
     private String type;
@@ -8,6 +9,12 @@ public class Plat implements IPlat {
     public Plat(String nom, double prix) {
         this.nom = nom;
         this.prix = prix;
+    }
+
+    public Plat(String nom, double prix, String type) {
+        this.nom = nom;
+        this.prix = prix;
+        this.type = type;
     }
 
     @Override

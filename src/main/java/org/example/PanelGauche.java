@@ -1,10 +1,7 @@
 package org.example;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.util.List;
 
 public class PanelGauche extends JPanel {
@@ -15,35 +12,24 @@ public class PanelGauche extends JPanel {
     private ButtonGroup platGroup;
     private ButtonGroup accompagnementGroup;
     private ButtonGroup dessertGroup;
+    private JButton addButton;
+    private JButton validateButton;
 
     public PanelGauche(List<IPlat> plats, List<IPlat> accompagnements, List<IPlat> desserts) {
-        this.setLayout(new BorderLayout());
-        this.add(this.createMainPanel(plats, accompagnements, desserts), BorderLayout.CENTER);
-        this.add(this.createControlPanel(), BorderLayout.SOUTH);
-    }
+        setLayout(new BorderLayout());
 
-    private JPanel createMainPanel(List<IPlat> plats, List<IPlat> accompagnements, List<IPlat> desserts) {
-        JPanel mainPanel = new JPanel(new GridLayout(4, 1)); // Changer GridLayout pour 4 rangées
-        mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Choisissez votre menu", TitledBorder.CENTER, TitledBorder.TOP));
-        mainPanel.add(this.createTablePanel());
-        mainPanel.add(this.createPlatPanel(plats));
-        mainPanel.add(this.createAccompagnementPanel(accompagnements));
-        mainPanel.add(this.createDessertPanel(desserts));
-        return mainPanel;
-    }
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-    private JPanel createTablePanel() {
-        JPanel tablePanel = new JPanel(new BorderLayout());
+        JPanel tablePanel = new JPanel();
         tablePanel.setBorder(BorderFactory.createTitledBorder("Numéro de Table"));
         tableComboBox = new JComboBox<>();
-        for (int i = 1; i <= 20; i++) { // Ajouter 20 tables pour exemple
+        for (int i = 1; i <= 20; i++) {
             tableComboBox.addItem("Table " + i);
         }
-        tablePanel.add(tableComboBox, BorderLayout.CENTER);
-        return tablePanel;
-    }
+        tablePanel.add(tableComboBox);
+        mainPanel.add(tablePanel);
 
-    private JPanel createPlatPanel(List<IPlat> plats) {
         JPanel platPanel = new JPanel(new BorderLayout());
         platPanel.setBorder(BorderFactory.createTitledBorder("Plats"));
 
@@ -68,11 +54,8 @@ public class PanelGauche extends JPanel {
 
         platPanel.add(platButtonPanel, BorderLayout.NORTH);
         platPanel.add(platComboBox, BorderLayout.SOUTH);
+        mainPanel.add(platPanel);
 
-        return platPanel;
-    }
-
-    private JPanel createAccompagnementPanel(List<IPlat> accompagnements) {
         JPanel accompagnementPanel = new JPanel(new BorderLayout());
         accompagnementPanel.setBorder(BorderFactory.createTitledBorder("Accompagnements"));
 
@@ -100,11 +83,8 @@ public class PanelGauche extends JPanel {
 
         accompagnementPanel.add(accompagnementButtonPanel, BorderLayout.NORTH);
         accompagnementPanel.add(accompagnementComboBox, BorderLayout.SOUTH);
+        mainPanel.add(accompagnementPanel);
 
-        return accompagnementPanel;
-    }
-
-    private JPanel createDessertPanel(List<IPlat> desserts) {
         JPanel dessertPanel = new JPanel(new BorderLayout());
         dessertPanel.setBorder(BorderFactory.createTitledBorder("Desserts"));
 
@@ -132,22 +112,40 @@ public class PanelGauche extends JPanel {
 
         dessertPanel.add(dessertButtonPanel, BorderLayout.NORTH);
         dessertPanel.add(dessertComboBox, BorderLayout.SOUTH);
+        mainPanel.add(dessertPanel);
 
-        return dessertPanel;
-    }
-
-    private JPanel createControlPanel() {
-        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton addButton = new JButton("Ajouter");
-        JButton validateButton = new JButton("Valider");
-        JButton backButton = new JButton("Retour");
-        JButton clearButton = new JButton("Effacer");
-
+        JPanel controlPanel = new JPanel();
+        addButton = new JButton("Ajouter");
+        validateButton = new JButton("Valider");
         controlPanel.add(addButton);
         controlPanel.add(validateButton);
-        controlPanel.add(backButton);
-        controlPanel.add(clearButton);
 
-        return controlPanel;
+        add(mainPanel, BorderLayout.CENTER);
+        add(controlPanel, BorderLayout.SOUTH);
+    }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getValidateButton() {
+        return validateButton;
+    }
+
+    public String getSelectedPlat() {
+        return (String) platComboBox.getSelectedItem();
+    }
+
+    public String getSelectedAccompagnement() {
+        return (String) accompagnementComboBox.getSelectedItem();
+    }
+
+    public String getSelectedDessert() {
+        return (String) dessertComboBox.getSelectedItem();
+    }
+
+    public JComboBox<String> getTableComboBox() {
+        return tableComboBox;
     }
 }
+
