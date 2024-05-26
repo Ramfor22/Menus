@@ -2,7 +2,10 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PanelGauche extends JPanel {
     private JComboBox<String> tableComboBox;
@@ -14,8 +17,15 @@ public class PanelGauche extends JPanel {
     private ButtonGroup dessertGroup;
     private JButton addButton;
     private JButton validateButton;
+    private List<IPlat> plats;
+    private List<IPlat> accompagnements;
+    private List<IPlat> desserts;
 
     public PanelGauche(List<IPlat> plats, List<IPlat> accompagnements, List<IPlat> desserts) {
+        this.plats = plats;
+        this.accompagnements = accompagnements;
+        this.desserts = desserts;
+
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel();
@@ -48,13 +58,30 @@ public class PanelGauche extends JPanel {
         platButtonPanel.add(poissonButton);
 
         platComboBox = new JComboBox<>();
-        for (IPlat plat : plats) {
-            platComboBox.addItem(plat.getNom());
-        }
-
         platPanel.add(platButtonPanel, BorderLayout.NORTH);
         platPanel.add(platComboBox, BorderLayout.SOUTH);
         mainPanel.add(platPanel);
+
+        viandeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updatePlatComboBox("Viande");
+            }
+        });
+
+        volailleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updatePlatComboBox("Volaille");
+            }
+        });
+
+        poissonButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updatePlatComboBox("Poisson");
+            }
+        });
 
         JPanel accompagnementPanel = new JPanel(new BorderLayout());
         accompagnementPanel.setBorder(BorderFactory.createTitledBorder("Accompagnements"));
@@ -77,13 +104,37 @@ public class PanelGauche extends JPanel {
         accompagnementButtonPanel.add(rizButton);
 
         accompagnementComboBox = new JComboBox<>();
-        for (IPlat accompagnement : accompagnements) {
-            accompagnementComboBox.addItem(accompagnement.getNom());
-        }
-
         accompagnementPanel.add(accompagnementButtonPanel, BorderLayout.NORTH);
         accompagnementPanel.add(accompagnementComboBox, BorderLayout.SOUTH);
         mainPanel.add(accompagnementPanel);
+
+        fritesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateAccompagnementComboBox("Frites");
+            }
+        });
+
+        patesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateAccompagnementComboBox("Pâtes");
+            }
+        });
+
+        pommesDeTerreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateAccompagnementComboBox("Pomme de terre");
+            }
+        });
+
+        rizButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateAccompagnementComboBox("Riz");
+            }
+        });
 
         JPanel dessertPanel = new JPanel(new BorderLayout());
         dessertPanel.setBorder(BorderFactory.createTitledBorder("Desserts"));
@@ -106,13 +157,37 @@ public class PanelGauche extends JPanel {
         dessertButtonPanel.add(cafeGourmandButton);
 
         dessertComboBox = new JComboBox<>();
-        for (IPlat dessert : desserts) {
-            dessertComboBox.addItem(dessert.getNom());
-        }
-
         dessertPanel.add(dessertButtonPanel, BorderLayout.NORTH);
         dessertPanel.add(dessertComboBox, BorderLayout.SOUTH);
         mainPanel.add(dessertPanel);
+
+        fruitsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateDessertComboBox("Fruits");
+            }
+        });
+
+        glacesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateDessertComboBox("Glaces");
+            }
+        });
+
+        patisserieButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateDessertComboBox("Patisserie");
+            }
+        });
+
+        cafeGourmandButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateDessertComboBox("Café Gourmand");
+            }
+        });
 
         JPanel controlPanel = new JPanel();
         addButton = new JButton("Ajouter");
@@ -122,6 +197,30 @@ public class PanelGauche extends JPanel {
 
         add(mainPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
+    }
+
+    private void updatePlatComboBox(String type) {
+        List<String> filteredPlats = plats.stream()
+                .filter(plat -> plat.getType().equals(type))
+                .map(IPlat::getNom)
+                .collect(Collectors.toList());
+        platComboBox.setModel(new DefaultComboBoxModel<>(filteredPlats.toArray(new String[0])));
+    }
+
+    private void updateAccompagnementComboBox(String type) {
+        List<String> filteredAccompagnements = accompagnements.stream()
+                .filter(accompagnement -> accompagnement.getType().equals(type))
+                .map(IPlat::getNom)
+                .collect(Collectors.toList());
+        accompagnementComboBox.setModel(new DefaultComboBoxModel<>(filteredAccompagnements.toArray(new String[0])));
+    }
+
+    private void updateDessertComboBox(String type) {
+        List<String> filteredDesserts = desserts.stream()
+                .filter(dessert -> dessert.getType().equals(type))
+                .map(IPlat::getNom)
+                .collect(Collectors.toList());
+        dessertComboBox.setModel(new DefaultComboBoxModel<>(filteredDesserts.toArray(new String[0])));
     }
 
     public JButton getAddButton() {
@@ -148,4 +247,3 @@ public class PanelGauche extends JPanel {
         return tableComboBox;
     }
 }
-
