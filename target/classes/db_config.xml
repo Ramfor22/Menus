@@ -1,0 +1,6 @@
+<database>
+    <user>pooMenu</user>
+    <password>menuPass</password>
+    <port>33020</port>
+    <name>MUSCHANG_MenuV4</name>
+</database>
