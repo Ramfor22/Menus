@@ -4,29 +4,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Commande {
-    private int numeroTable;
-    private List<IPlat> plats = new ArrayList<>();
-    private double prixTotal;
+    private List<IPlat> plats;
+    private List<IPlat> accompagnements;
+    private List<IPlat> desserts;
 
-    public Commande(int numeroTable) {
-        this.numeroTable = numeroTable;
+    public Commande() {
+        plats = new ArrayList<>();
+        accompagnements = new ArrayList<>();
+        desserts = new ArrayList<>();
     }
 
     public void ajouterPlat(IPlat plat) {
         plats.add(plat);
-        prixTotal += plat.getPrix();
     }
 
-    public int getNumeroTable() {
-        return numeroTable;
+    public void ajouterAccompagnement(IPlat accompagnement) {
+        accompagnements.add(accompagnement);
     }
 
-    public double getPrixTotal() {
-        // Le prix total est déjà calculé lors de l'ajout de chaque plat
-        return prixTotal;
+    public void ajouterDessert(IPlat dessert) {
+        desserts.add(dessert);
     }
 
     public List<IPlat> getPlats() {
-        return new ArrayList<>(plats); // Retourne une copie pour éviter la modification externe
+        return plats;
+    }
+
+    public List<IPlat> getAccompagnements() {
+        return accompagnements;
+    }
+
+    public List<IPlat> getDesserts() {
+        return desserts;
+    }
+
+    public void afficherDetails() {
+        System.out.println("Plats:");
+        for (IPlat plat : plats) {
+            System.out.println(" - " + plat.getNom());
+        }
+
+        System.out.println("Accompagnements:");
+        for (IPlat accompagnement : accompagnements) {
+            System.out.println(" - " + accompagnement.getNom());
+        }
+
+        System.out.println("Desserts:");
+        for (IPlat dessert : desserts) {
+            System.out.println(" - " + dessert.getNom());
+        }
     }
 }
