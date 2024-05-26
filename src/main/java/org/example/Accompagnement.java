@@ -5,9 +5,10 @@ public class Accompagnement implements IPlat {
     private double prix;
     private String type;
 
-    public Accompagnement(String nom, double prix) {
+    public Accompagnement(String nom, double prix, String type) {
         this.nom = nom;
         this.prix = prix;
+        this.type = type;
     }
 
     @Override
@@ -18,11 +19,6 @@ public class Accompagnement implements IPlat {
     @Override
     public double getPrix() {
         return prix;
-    }
-
-    @Override
-    public String getPreparation() {
-        return nom;
     }
 
     @Override
@@ -38,5 +34,10 @@ public class Accompagnement implements IPlat {
     @Override
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String getPreparation() {
+        return "Accompagnement: " + nom;
     }
 }

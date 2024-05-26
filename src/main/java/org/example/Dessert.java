@@ -5,21 +5,20 @@ public class Dessert implements IPlat {
     private double prix;
     private String type;
 
-    public Dessert(String nom, double prix) {
+    public Dessert(String nom, double prix, String type) {
         this.nom = nom;
         this.prix = prix;
+        this.type = type;
     }
 
-
+    @Override
+    public String getNom() {
+        return nom;
+    }
 
     @Override
     public double getPrix() {
         return prix;
-    }
-
-    @Override
-    public String getPreparation() {
-        return nom;
     }
 
     @Override
@@ -38,7 +37,7 @@ public class Dessert implements IPlat {
     }
 
     @Override
-    public String getNom() {
-        return null;
+    public String getPreparation() {
+        return "Dessert: " + nom;
     }
 }

@@ -1,23 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Menu>
-    <Plats>
-        <Plat type="Viande" prix="22.0">Boeuf </Plat>
-        <Plat type="Poisson" prix="18.0">Saumon</Plat>
-        <Plat type="Volaille" prix="15.0">Poulet</Plat>
-        <!-- Plus de plats ici -->
-    </Plats>
-    <Accompagnements>
-        <Accompagnement prix="2.5">Frites</Accompagnement>
-        <Accompagnement prix="2.5">Pates</Accompagnement>
-        <Accompagnement prix="2.5">PommesDeTerre</Accompagnement>
-        <Accompagnement prix="2.5">Riz</Accompagnement>
-        <!-- Plus d'accompagnements ici -->
-    </Accompagnements>
-    <Desserts>
-        <Dessert prix="4.5">Cafegourmand</Dessert>
-        <Dessert prix="3.0">Fruit</Dessert>
-        <Dessert prix="3.0">Glace</Dessert>
-        <Dessert prix="5.0">Patisserie</Dessert>
-        <!-- Plus de desserts ici -->
-    </Desserts>
-</Menu>
+<menu>
+    <plats>
+        <plat>
+            <nom>Steak de boeuf</nom>
+            <prix>20.0</prix>
+            <type>Viande</type>
+        </plat>
+        <plat>
+            <nom>Steak de cheval</nom>
+            <prix>18.0</prix>
+            <type>Viande</type>
+        </plat>
+        <plat>
+            <nom>Poulet rôti</nom>
+            <prix>15.0</prix>
+            <type>Volaille</type>
+        </plat>
+        <plat>
+            <nom>Dinde</nom>
+            <prix>17.0</prix>
+            <type>Volaille</type>
+        </plat>
+        <plat>
+            <nom>Cabillaud</nom>
+            <prix>22.0</prix>
+            <type>Poisson</type>
+        </plat>
+        <!-- Ajoutez plus de plats ici -->
+    </plats>
+    <accompagnements>
+        <accompagnement>
+            <nom>Frites</nom>
+            <prix>5.0</prix>
+            <type>Frites</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Pâtes</nom>
+            <prix>6.0</prix>
+            <type>Pâtes</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Pomme de terre</nom>
+            <prix>5.0</prix>
+            <type>Pomme de terre</type>
+        </accompagnement>
+        <accompagnement>
+            <nom>Riz</nom>
+            <prix>4.0</prix>
+            <type>Riz</type>
+        </accompagnement>
+        <!-- Ajoutez plus d'accompagnements ici -->
+    </accompagnements>
+    <desserts>
+        <dessert>
+            <nom>Fruits</nom>
+            <prix>4.0</prix>
+            <type>Fruits</type>
+        </dessert>
+        <dessert>
+            <nom>Glaces</nom>
+            <prix>5.0</prix>
+            <type>Glaces</type>
+        </dessert>
+        <dessert>
+            <nom>Patisserie</nom>
+            <prix>6.0</prix>
+            <type>Patisserie</type>
+        </dessert>
+        <dessert>
+            <nom>Café Gourmand</nom>
+            <prix>7.0</prix>
+            <type>Café Gourmand</type>
+        </dessert>
+        <!-- Ajoutez plus de desserts ici -->
+    </desserts>
+</menu>
