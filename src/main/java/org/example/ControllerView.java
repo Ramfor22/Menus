@@ -1,6 +1,8 @@
 package org.example;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -29,9 +31,55 @@ public class ControllerView {
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelGauche, panelDroit);
         frame.add(splitPane);
 
+        frame.setJMenuBar(createMenuBar());
+
         addListeners();
 
         frame.setVisible(true);
+    }
+
+    private JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu menu = new JMenu("Options");
+        JMenuItem commandesJour = new JMenuItem("Commandes du jour");
+        JMenuItem toutesCommandes = new JMenuItem("Toutes les commandes");
+
+        commandesJour.addActionListener(e -> afficherCommandes(true));
+        toutesCommandes.addActionListener(e -> afficherCommandes(false));
+
+        menu.add(commandesJour);
+        menu.add(toutesCommandes);
+        menuBar.add(menu);
+
+        return menuBar;
+    }
+
+    private void afficherCommandes(boolean commandesDuJour) {
+        List<Commande> commandes = dbManager.getCommandes(commandesDuJour);
+
+        String[] columnNames = {"ID", "Table", "Plat", "Accompagnement", "Dessert", "Prix Total", "Date", "Payée"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (Commande commande : commandes) {
+            Object[] row = {
+                    commande.getId(),
+                    commande.getTableNum(),
+                    commande.getPlat(),
+                    commande.getAccompagnement(),
+                    commande.getDessert(),
+                    commande.getPrixTotal(),
+                    commande.getDate(),
+                    commande.isPayee() ? "Oui" : "Non"
+            };
+            model.addRow(row);
+        }
+
+        JTable table = new JTable(model);
+        table.setDefaultRenderer(Object.class, new CommandeTableCellRenderer());
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        JOptionPane.showMessageDialog(null, scrollPane, "Liste des commandes", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void addListeners() {
@@ -103,6 +151,5 @@ public class ControllerView {
         new ControllerView(plats, accompagnements, desserts);
     }
 }
-
 
 
