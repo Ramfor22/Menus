@@ -1,57 +1,60 @@
 package org.example;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Commande {
-    private List<IPlat> plats;
-    private List<IPlat> accompagnements;
-    private List<IPlat> desserts;
+    private int id;
+    private String tableNum;
+    private String plat;
+    private String accompagnement;
+    private String dessert;
+    private double prixTotal;
+    private Timestamp date;
+    private boolean payee;
 
-    public Commande() {
-        plats = new ArrayList<>();
-        accompagnements = new ArrayList<>();
-        desserts = new ArrayList<>();
+    public Commande(int id, String tableNum, String plat, String accompagnement, String dessert, double prixTotal, Timestamp date, boolean payee) {
+        this.id = id;
+        this.tableNum = tableNum;
+        this.plat = plat;
+        this.accompagnement = accompagnement;
+        this.dessert = dessert;
+        this.prixTotal = prixTotal;
+        this.date = date;
+        this.payee = payee;
     }
 
-    public void ajouterPlat(IPlat plat) {
-        plats.add(plat);
+    public int getId() {
+        return id;
     }
 
-    public void ajouterAccompagnement(IPlat accompagnement) {
-        accompagnements.add(accompagnement);
+    public String getTableNum() {
+        return tableNum;
     }
 
-    public void ajouterDessert(IPlat dessert) {
-        desserts.add(dessert);
+    public String getPlat() {
+        return plat;
     }
 
-    public List<IPlat> getPlats() {
-        return plats;
+    public String getAccompagnement() {
+        return accompagnement;
     }
 
-    public List<IPlat> getAccompagnements() {
-        return accompagnements;
+    public String getDessert() {
+        return dessert;
     }
 
-    public List<IPlat> getDesserts() {
-        return desserts;
+    public double getPrixTotal() {
+        return prixTotal;
     }
 
-    public void afficherDetails() {
-        System.out.println("Plats:");
-        for (IPlat plat : plats) {
-            System.out.println(" - " + plat.getNom());
-        }
+    public Timestamp getDate() {
+        return date;
+    }
 
-        System.out.println("Accompagnements:");
-        for (IPlat accompagnement : accompagnements) {
-            System.out.println(" - " + accompagnement.getNom());
-        }
-
-        System.out.println("Desserts:");
-        for (IPlat dessert : desserts) {
-            System.out.println(" - " + dessert.getNom());
-        }
+    public boolean isPayee() {
+        return payee;
     }
 }
+

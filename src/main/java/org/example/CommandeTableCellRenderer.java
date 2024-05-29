@@ -24,3 +24,4 @@ public class CommandeTableCellRenderer extends DefaultTableCellRenderer {
         return c;
     }
 }
+

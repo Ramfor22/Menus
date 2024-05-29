@@ -10,10 +10,15 @@ public class DatabaseManager {
     private String password;
 
     public DatabaseManager() {
-        DatabaseConfig config = DatabaseConfig.loadFromXML();
-        this.url = "jdbc:mysql://localhost:" + config.getPort() + "/" + config.getName();
-        this.user = config.getUser();
-        this.password = config.getPassword();
+        try {
+            DatabaseConfig config = DatabaseConfig.loadFromXML();
+            this.url = "jdbc:mysql://localhost:" + config.getPort() + "/" + config.getName();
+            this.user = config.getUser();
+            this.password = config.getPassword();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement de la configuration de la base de données", e);
+        }
     }
 
     public List<Commande> getCommandes(boolean commandesDuJour) {
@@ -45,5 +50,24 @@ public class DatabaseManager {
         }
         return commandes;
     }
+
+    public void insertCommande(String table, String plat, String accompagnement, String dessert, double prixTotal) {
+        String query = "INSERT INTO commandes (table_num, plat, accompagnement, dessert, prix_total, payee) VALUES (?, ?, ?, ?, ?, false)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, table);
+            pstmt.setString(2, plat);
+            pstmt.setString(3, accompagnement);
+            pstmt.setString(4, dessert);
+            pstmt.setDouble(5, prixTotal);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
+
 
